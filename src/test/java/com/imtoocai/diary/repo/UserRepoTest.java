@@ -9,12 +9,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class UserRepoTest{
+public class UserRepoTest {
     @Autowired
     private UserRepo userRepo;
+
     @Test
-    public void test(){
-        user user=new user();
+    public void test() {
+        user user = new user();
         user.setUserName("test11");
         user.setEmail("abc@qq.com");
         user.setPassword(1234);
