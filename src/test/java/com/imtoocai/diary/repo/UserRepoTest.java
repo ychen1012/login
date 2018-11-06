@@ -1,6 +1,6 @@
 package com.imtoocai.diary.repo;
 
-import com.imtoocai.diary.entity.user;
+import com.imtoocai.diary.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class UserRepoTest {
 
     @Test
     public void test() {
-        user user = new user();
+        User user = new User();
         user.setUserName("test11");
         user.setEmail("abc@qq.com");
         user.setPassword(1234);

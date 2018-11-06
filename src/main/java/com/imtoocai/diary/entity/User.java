@@ -3,6 +3,7 @@ package com.imtoocai.diary.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.sql.Timestamp;
 
 @Entity
@@ -23,6 +24,7 @@ public class User {
     @Column(name = "create_time")
     private Timestamp createTime;
 
+    @Email(message = "请输入正确的邮箱")
     @Column(name = "email")
     private String email;
 
