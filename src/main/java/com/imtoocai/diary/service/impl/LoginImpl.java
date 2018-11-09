@@ -29,10 +29,10 @@ public class LoginImpl implements Login {
     public Result login(String email, String password) {
         List<User> users = userRepo.findByEmail(email);
         for (User user : users) {
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(Integer.valueOf(password))) {
                 return Result.builder().result(Boolean.TRUE).msg("登录成功").build();
             }
         }
-        return null;
+        return Result.builder().result(Boolean.FALSE).msg("登录失败").build();
     }
 }

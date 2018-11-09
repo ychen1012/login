@@ -34,6 +34,6 @@ public class RegisterController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-        return "helloworld";
+        return "hello world，i am  zbnnnnnn";
     }
 }
