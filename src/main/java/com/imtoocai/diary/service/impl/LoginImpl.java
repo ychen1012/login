@@ -28,11 +28,14 @@ public class LoginImpl implements Login {
     @Override
     public Result login(String email, String password) {
         List<User> users = userRepo.findByEmail(email);
+        if (users.size() <= 0) {
+            return Result.builder().result(Boolean.FALSE).msg("邮箱不存在").build();
+        }
         for (User user : users) {
             if (user.getPassword().equals(Integer.valueOf(password))) {
                 return Result.builder().result(Boolean.TRUE).msg("登录成功").build();
             }
         }
-        return Result.builder().result(Boolean.FALSE).msg("登录失败").build();
+        return Result.builder().result(Boolean.FALSE).msg("密码不匹配").build();
     }
 }
