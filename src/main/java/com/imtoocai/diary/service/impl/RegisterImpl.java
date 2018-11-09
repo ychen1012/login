@@ -7,6 +7,8 @@ import com.imtoocai.diary.service.Register;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegisterImpl implements Register {
     @Autowired
@@ -14,16 +16,22 @@ public class RegisterImpl implements Register {
 
     @Override
     public Result userRegister(User user) {
-        User result = userRepo.findByUserName(user.getUserName());
-        if (result == null) {
-            userRepo.save(user);
-            return Result.builder().result(Boolean.TRUE).msg("注册成功").build();
-        } else {
-            if (result.getEmail().equals(user.getEmail())) {
-                return Result.builder().result(Boolean.FALSE).msg("邮箱已存在").build();
-            }
+        List<User> result = userRepo.findByUserName(user.getUserName());
+        if (result.size() >= 1) {
             return Result.builder().result(Boolean.FALSE).msg("用户名已存在").build();
         }
+        if (userRepo.findByEmail(user.getEmail()).size() > 0) {
+            return Result.builder().result(Boolean.FALSE).msg("邮箱已存在").build();
+        }
+        if (result.size() == 0) {
+            userRepo.save(user);
+            return Result.builder().result(Boolean.TRUE).msg("注册成功").build();
+        }
+
+
+        return null;
 
     }
+
+
 }

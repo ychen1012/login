@@ -23,7 +23,7 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Result register(@RequestBody @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            StringBuffer msg = new StringBuffer();
+            StringBuilder msg = new StringBuilder();
             for (ObjectError error : result.getAllErrors()) {
                 msg.append(error.getDefaultMessage());
             }
