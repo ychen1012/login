@@ -15,7 +15,7 @@ public class MailServiceTest {
 
     @Test
     public void sendMailTest(){
-        mailService.sendSimpleMail("13681132624@163.com","test","11111222223333");
+        mailService.sendSimpleMail("13681132624@163.com","重置密码","您好，您进行了重置密码操作，验证码为"+"*#o6#");
     }
 
 
