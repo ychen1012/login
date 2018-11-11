@@ -28,6 +28,6 @@ public class ChangePasswordImpl implements ChangePassword {
         }
 
 
-        return null;
+        return Result.builder().result(Boolean.FALSE).msg("未知错误").build();
     }
 }
