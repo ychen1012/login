@@ -15,16 +15,19 @@ public class ChangePasswordImpl implements ChangePassword {
     private UserRepo userRepo;
 
     @Override
-    public Result ChangePassword(String email, Integer oldPassword, Integer newPasswor) {
+    public Result ChangePassword(String email, Integer oldPassword, Integer newPassword) {
         List<User> byEmail = userRepo.findByEmail(email);
         if (byEmail.size() <= 0) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();
         }
         if (byEmail.get(0).getPassword().equals(oldPassword)) {
             User user = byEmail.get(0);
-            user.setPassword(newPasswor);
+            user.setPassword(newPassword);
             userRepo.saveAndFlush(user);
             return Result.builder().result(Boolean.TRUE).msg("密码重置成功").build();
+        }
+        if (!byEmail.get(0).getPassword().equals(oldPassword)) {
+            return Result.builder().result(Boolean.FALSE).msg("密码不正确").build();
         }
 
 

@@ -31,6 +31,8 @@ public class ResetPasswordImpl implements ResetPassword {
         }
         if (currentCode.equals(code)) {
             user.setPassword(newPassword);
+            userRepo.saveAndFlush(user);
+            //redisTemplate.delete(email);
             return Result.builder().result(Boolean.TRUE).msg("重置密码成功").build();
         }
         if (!currentCode.equals(code)) {
