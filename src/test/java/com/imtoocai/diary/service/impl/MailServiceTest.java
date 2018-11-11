@@ -1,5 +1,6 @@
 package com.imtoocai.diary.service.impl;
 
+import com.imtoocai.diary.util.CodeUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class MailServiceTest {
 
     @Test
     public void sendMailTest(){
-        mailService.sendSimpleMail("13681132624@163.com","重置密码","您好，您进行了重置密码操作，验证码为"+"*#o6#");
+        mailService.sendSimpleMail("13681132624@139.com","重置密码","您好，您进行了重置密码操作，验证码为"+CodeUtil.getCode());
     }
 
 
