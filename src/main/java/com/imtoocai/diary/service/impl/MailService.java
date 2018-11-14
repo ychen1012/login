@@ -8,14 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
-import javax.annotation.Resource;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -27,8 +21,6 @@ public class MailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Resource
-    TemplateEngine templateEngine;
 
     @Autowired
     StringRedisTemplate redisTemplate;
@@ -58,18 +50,5 @@ public class MailService {
 
     }
 
-    public void setTmeplateMail(String to, String subject) throws MessagingException {
-        Context context = new Context();
-        context.setVariable("code", "*#06#");
-        String emailContent = templateEngine.process("emailTemple", context);
 
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-        mimeMessageHelper.setTo(to);
-        mimeMessageHelper.setFrom(mailfrom);
-        mimeMessageHelper.setSubject(subject);
-        mimeMessageHelper.setText(emailContent, true);
-        mailSender.send(mimeMessage);
-
-    }
 }

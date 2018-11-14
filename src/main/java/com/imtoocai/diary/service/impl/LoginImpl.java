@@ -33,7 +33,7 @@ public class LoginImpl implements Login {
         }
         for (User user : users) {
             if (user.getPassword().equals(Integer.valueOf(password))) {
-                return Result.builder().result(Boolean.TRUE).msg("登录成功").build();
+                return Result.builder().result(Boolean.TRUE).msg("登录成功").userId(user.getUserId()).build();
             }
         }
         return Result.builder().result(Boolean.FALSE).msg("密码不匹配").build();
