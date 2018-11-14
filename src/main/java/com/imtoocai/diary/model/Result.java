@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class Result {
     private Boolean result;
     private String msg;
+    private Integer userId;
 }
