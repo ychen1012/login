@@ -8,14 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
-import javax.annotation.Resource;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -26,9 +20,6 @@ public class MailService {
 
     @Autowired
     private JavaMailSender mailSender;
-
-    @Resource
-    TemplateEngine templateEngine;
 
     @Autowired
     StringRedisTemplate redisTemplate;
@@ -49,7 +40,7 @@ public class MailService {
         try {
 
             sendSimpleMail(email, "重置密码", "您好，您进行了重置密码操作，验证码为" + code);
-            redisTemplate.opsForValue().set(email, code, 2000, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(email, code, 10, TimeUnit.MINUTES);
             return Result.builder().result(Boolean.TRUE).msg("已发送到您的邮箱").build();
         } catch (Exception e) {
             return Result.builder().result(Boolean.FALSE).msg("发送失败").build();
@@ -58,18 +49,4 @@ public class MailService {
 
     }
 
-    public void setTmeplateMail(String to, String subject) throws MessagingException {
-        Context context = new Context();
-        context.setVariable("code", "*#06#");
-        String emailContent = templateEngine.process("emailTemple", context);
-
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-        mimeMessageHelper.setTo(to);
-        mimeMessageHelper.setFrom(mailfrom);
-        mimeMessageHelper.setSubject(subject);
-        mimeMessageHelper.setText(emailContent, true);
-        mailSender.send(mimeMessage);
-
-    }
 }
