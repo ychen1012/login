@@ -25,7 +25,9 @@ public class RegisterImpl implements Register {
         }
         if (result.size() == 0) {
             userRepo.save(user);
-            return Result.builder().result(Boolean.TRUE).msg("注册成功").build();
+            List<User> user1 = userRepo.findByEmail(user.getEmail());
+            Integer userId = user1.get(0).getUserId();
+            return Result.builder().result(Boolean.TRUE).msg("注册成功").userId(userId).build();
         }
 
 

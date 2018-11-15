@@ -22,17 +22,17 @@ public class UserController {
 
     @RequestMapping(value = "/password/change", method = RequestMethod.POST)
     public Result changePassword(@RequestBody ChangeInfo changeInfo) {
-        return changePassword.ChangePassword(Integer.valueOf(changeInfo.getUserId()), Integer.valueOf(changeInfo.getOldPassword()), Integer.valueOf(changeInfo.getNewPassword()));
+        return changePassword.ChangePassword(Integer.valueOf(changeInfo.getUserId()), Long.valueOf(changeInfo.getOldPassword()), Long.valueOf(changeInfo.getNewPassword()));
     }
 
     @RequestMapping(value = "/password/reset", method = RequestMethod.GET)
-    public Result resetPassword(@RequestParam String email, @RequestParam String code, @RequestParam Integer newPassword) {
+    public Result resetPassword(@RequestParam String email, @RequestParam String code, @RequestParam Long newPassword) {
         return resetPassword.resetPassword(email, code, newPassword);
     }
 
     @RequestMapping(value = "/password/reset", method = RequestMethod.POST)
     public Result resetPassword(@RequestBody ResetInfo resetInfo) {
-        return resetPassword(resetInfo.getEmail(), resetInfo.getCode(), Integer.valueOf(resetInfo.getPassword()));
+        return resetPassword(resetInfo.getEmail(), resetInfo.getCode(), Long.valueOf(resetInfo.getPassword()));
     }
 
     @RequestMapping(value = "/get/mail", method = RequestMethod.GET)

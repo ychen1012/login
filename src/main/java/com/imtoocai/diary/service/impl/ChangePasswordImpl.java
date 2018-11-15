@@ -15,7 +15,7 @@ public class ChangePasswordImpl implements ChangePassword {
     private UserRepo userRepo;
 
     @Override
-    public Result ChangePassword(String email, Integer oldPassword, Integer newPassword) {
+    public Result ChangePassword(String email, Long oldPassword, Long newPassword) {
         List<User> byEmail = userRepo.findByEmail(email);
         if (byEmail.size() <= 0) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();
@@ -35,7 +35,7 @@ public class ChangePasswordImpl implements ChangePassword {
     }
 
 
-    public Result ChangePassword(Integer userId, Integer oldPassword, Integer newPassword) {
+    public Result ChangePassword(Integer userId, Long oldPassword, Long newPassword) {
         User allByUserId = userRepo.findAllByUserId(userId);
         if (allByUserId == null) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").userId(userId).build();

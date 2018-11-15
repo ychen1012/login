@@ -19,7 +19,7 @@ public class User {
     private String userName;
 
     @Column(name = "password")
-    private Integer password;
+    private Long password;
 
     @Column(name = "create_time")
     private Timestamp createTime;
@@ -32,7 +32,6 @@ public class User {
     private void onCreate() {
         createTime = new Timestamp(System.currentTimeMillis());
     }
-
 
 
 }
