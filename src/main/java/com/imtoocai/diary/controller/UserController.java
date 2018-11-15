@@ -1,5 +1,6 @@
 package com.imtoocai.diary.controller;
 
+import com.imtoocai.diary.model.ChangeInfo;
 import com.imtoocai.diary.model.ResetInfo;
 import com.imtoocai.diary.model.Result;
 import com.imtoocai.diary.service.ChangePassword;
@@ -20,8 +21,8 @@ public class UserController {
     private MailService mailService;
 
     @RequestMapping(value = "/password/change", method = RequestMethod.POST)
-    public Result changePassword(@RequestParam String email, @RequestParam Integer oldPassword, @RequestParam Integer newPassword) {
-        return changePassword.ChangePassword(email, oldPassword, newPassword);
+    public Result changePassword(@RequestBody ChangeInfo changeInfo) {
+        return changePassword.ChangePassword(changeInfo.getUserId(), changeInfo.getOldPassword(), changeInfo.getNewPassword());
     }
 
     @RequestMapping(value = "/password/reset", method = RequestMethod.GET)

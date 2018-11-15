@@ -33,4 +33,19 @@ public class ChangePasswordImpl implements ChangePassword {
 
         return Result.builder().result(Boolean.FALSE).msg("未知错误").build();
     }
+
+
+    public Result ChangePassword(Integer userId, Integer oldPassword, Integer newPassword) {
+        User allByUserId = userRepo.findAllByUserId(userId);
+        if (allByUserId == null) {
+            return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();
+        }
+        if (allByUserId.getPassword().equals(oldPassword)) {
+            allByUserId.setPassword(newPassword);
+            userRepo.saveAndFlush(allByUserId);
+            return Result.builder().result(Boolean.TRUE).msg("密码重置成功").build();
+        }
+
+        return Result.builder().result(Boolean.FALSE).msg("未知错误").build();
+    }
 }
