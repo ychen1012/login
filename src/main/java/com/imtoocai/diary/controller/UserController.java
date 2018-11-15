@@ -22,7 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "/password/change", method = RequestMethod.POST)
     public Result changePassword(@RequestBody ChangeInfo changeInfo) {
-        return changePassword.ChangePassword(changeInfo.getUserId(), changeInfo.getOldPassword(), changeInfo.getNewPassword());
+        return changePassword.ChangePassword(Integer.valueOf(changeInfo.getUserId()), Integer.valueOf(changeInfo.getOldPassword()), Integer.valueOf(changeInfo.getNewPassword()));
     }
 
     @RequestMapping(value = "/password/reset", method = RequestMethod.GET)

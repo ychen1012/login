@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChangeInfo {
 
-    private Integer userId;
-    private Integer oldPassword;
-    private Integer newPassword;
+    private String userId;
+    private String oldPassword;
+    private String newPassword;
 }
