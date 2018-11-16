@@ -29,6 +29,7 @@ public class RegisterController {
             }
             return Result.builder().result(Boolean.FALSE).msg(msg.toString()).build();
         }
+        User user1=new User();
         return register.userRegister(user);
     }
 
