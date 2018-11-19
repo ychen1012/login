@@ -13,7 +13,7 @@ public class ChangePasswordImpl implements ChangePassword {
     private UserRepo userRepo;
 
     @Override
-    public Result ChangePassword(String userId, Long oldPassword, Long newPassword) {
+    public Result ChangePassword(String userId, String oldPassword, String newPassword) {
         User allByUserId = userRepo.findAllByUserId(Integer.valueOf(userId));
         if (allByUserId == null) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();

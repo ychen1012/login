@@ -32,7 +32,8 @@ public class LoginImpl implements Login {
             return Result.builder().result(Boolean.FALSE).msg("邮箱不存在").build();
         }
         for (User user : users) {
-            if (user.getPassword().equals(Long.valueOf(password))) {
+
+            if (user.getPassword().equals(password)) {
                 return Result.builder().result(Boolean.TRUE).msg("登录成功").userId(user.getUserId()).build();
             }
         }

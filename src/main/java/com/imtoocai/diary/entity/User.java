@@ -18,8 +18,12 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    /*
+    修改数据库格式 加盐加密
+     */
     @Column(name = "password")
-    private Long password;
+    private String password;
+
 
     @Column(name = "create_time")
     private Timestamp createTime;
