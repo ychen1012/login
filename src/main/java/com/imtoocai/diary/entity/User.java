@@ -18,8 +18,11 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    /*
+    修改数据库格式 加盐加密
+     */
     @Column(name = "password")
-    private Integer password;
+    private String password;
 
     @Column(name = "create_time")
     private Timestamp createTime;
@@ -32,7 +35,6 @@ public class User {
     private void onCreate() {
         createTime = new Timestamp(System.currentTimeMillis());
     }
-
 
 
 }

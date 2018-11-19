@@ -15,7 +15,7 @@ public class ChangePasswordImpl implements ChangePassword {
     private UserRepo userRepo;
 
     @Override
-    public Result ChangePassword(String email, Integer oldPassword, Integer newPassword) {
+    public Result ChangePassword(String email, String oldPassword, String newPassword) {
         List<User> byEmail = userRepo.findByEmail(email);
         if (byEmail.size() <= 0) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();

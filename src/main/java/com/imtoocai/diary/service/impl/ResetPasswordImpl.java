@@ -19,7 +19,7 @@ public class ResetPasswordImpl implements ResetPassword {
 
 
     @Override
-    public Result resetPassword(String email, String code, Integer newPassword) {
+    public Result resetPassword(String email, String code, String newPassword) {
         List<User> userList = userRepo.findByEmail(email);
         if (userList.size() <= 0) {
             return Result.builder().result(Boolean.FALSE).msg("用户不存在").build();
