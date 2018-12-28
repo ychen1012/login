@@ -17,6 +17,7 @@ public class User {
 
     @Column(name = "user_name")
     private String userName;
+    //2018/12/28
 
     /*
     修改数据库格式 加盐加密
